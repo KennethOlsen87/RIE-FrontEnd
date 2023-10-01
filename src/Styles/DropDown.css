@@ -1,0 +1,45 @@
+/* create style for DropDown component */
+/* .DropDown {
+ */
+
+    /* const DropDownStyle = styled.div`
+    position: relative;
+    display: inline-block;
+    margin: 1rem 0;
+    z-index: 1;
+    .dropbtn {
+        background-color: #4caf50;
+        color: white;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .dropbtn:hover,
+    .dropbtn:focus {
+        background-color: #3e8e41;
+    }
+    
+    .dropdown-content {
+    position: absolute;
+    margin-top: 0.5rem;
+    background-color: #f9f9f9;
+    min-width: 10rem;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    
+    a {
+        color: black;
+        padding: 0.5rem;
+        text-decoration: none;
+        display: block;
+    }
+    a:hover {
+        background-color: #f1f1f1;
+    }
+}
+/* `; */
+
+/* } */
+/* export default DropDownStyle; */ 
