@@ -1,16 +1,17 @@
-import './App.css';
-import DropDown from './components/DropDown';  
+import React from "react";
+
+import "./App.css";
+import DestinationCard from "./components/DestinationCard/DestinationCard";
+import OrderForm from "./components/OrderForm/OrderForm";
 
 function App() {
   return (
-    <div className="App">
-      <header>
-        <h1>RIE ordering service</h1>
-      {<DropDown /> }
-      </header>
+    <div className="wrapper">
+      <h1 className="mainHeading">RIE ordering service</h1>
+      <DestinationCard />
+      <OrderForm />
     </div>
   );
 }
-
 
 export default App;

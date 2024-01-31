@@ -1,0 +1,25 @@
+ .content {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        width: 100%;
+        max-width: 55rem;
+        min-width: 800px;
+        padding: 0 16px; 
+        padding-bottom: 48px;
+    }
+
+    .dropDown {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 16px;
+    }
+
+    .content div {
+        display:block;
+        float: left;
+    } 
+
+  

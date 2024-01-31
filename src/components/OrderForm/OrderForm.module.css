@@ -1,0 +1,32 @@
+.wrapper {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 55rem;
+    min-width: 800px;
+    padding: 0 16px; 
+    padding-bottom: 48px;
+}
+
+.wrapper h5 {
+    font-size: 1.125rem;
+    margin-bottom: 0;
+}
+
+.card {
+    background-color: #ebeaea;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+}
+
+.button {
+    float: left;
+}
+    
+
+
+
+
