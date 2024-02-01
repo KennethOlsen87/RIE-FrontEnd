@@ -4,6 +4,14 @@ import ProductLine from "../ProductLine/ProductLine";
 import styles from "./OrderForm.module.css";
 
 function OrderForm() {
+  const [productLines, setProductLines] = React.useState([<ProductLine />]);
+
+  function addProductLine() {
+    const nextProductLines = [...productLines];
+    nextProductLines.push(<ProductLine />);
+    setProductLines(nextProductLines);
+  }
+
   return (
     <>
       <div className={styles.card}>
@@ -12,10 +20,22 @@ function OrderForm() {
           <h5>Quantity</h5>
           <h5>Total size</h5>
         </div>
-        <ProductLine />
-        <ProductLine />
+
+        <div className={styles.productLines}>
+          {productLines.map((productLine, index) => {
+            return (
+              <div key={index} className={styles.productLine}>
+                {productLine}
+              </div>
+            );
+          })}
+        </div>
+        <p>Total capacity needed </p>
       </div>
-      <button className={styles.button}>Add a new product line</button>
+
+      <button onClick={addProductLine} className={styles.button}>
+        Add a new product line
+      </button>
       <button className={styles.button}>BOOK VEHICLE!</button>
     </>
   );
