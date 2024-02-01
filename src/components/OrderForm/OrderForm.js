@@ -27,13 +27,12 @@ function OrderForm() {
           {productLines.map((productLine, index) => {
             return (
               <div className={styles.productLine} key={index}>
-                {/* {productLine} */}
                 <ProductLine />
               </div>
             );
           })}
         </div>
-        <OrderCapacityTotal />
+        {/* <OrderCapacityTotal capacityTotal={capacityTotal} /> */}
       </div>
 
       <button onClick={addProductLine} className={styles.button}>

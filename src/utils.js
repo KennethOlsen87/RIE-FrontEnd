@@ -5,3 +5,5 @@ export function calculateTotalCargoSize(productLine) {
 
   return totalCargoSize;
 }
+
+// crypto.randomUUID();

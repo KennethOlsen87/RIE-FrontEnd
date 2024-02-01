@@ -6,39 +6,49 @@ import styles from "./ProductLine.module.css";
 
 function ProductLine() {
   const [products, setProducts] = React.useState([]);
-  const [chosenProduct, setChosenProduct] = React.useState("");
   const [quantity, setQuantity] = React.useState(0);
-  const [totalCargoSize, setTotalCargoSize] = React.useState(0);
+  const [cargoData, setCargoData] = React.useState({});
 
   const id = React.useId();
+
+  const foundProduct = React.useMemo(() => {
+    const cargo = cargoData.chosenCargo;
+    return products.find((product) => product.name === cargo);
+  }, [products, cargoData]);
+
+  React.useEffect(() => {
+    if (foundProduct) {
+      setCargoData(() => ({
+        id: foundProduct.id,
+        chosenCargo: foundProduct.name,
+        quantity,
+        totalCargoSize: foundProduct.size * quantity || 0,
+      }));
+    }
+  }, [quantity, foundProduct]);
 
   React.useEffect(() => {
     fetch("https://rf-candidate-sat-backend.azurewebsites.net/api/Products")
       .then((response) => response.json())
-      .then((data) => setProducts(data.slice(0, -1)));
-    // Used data.slice to remove last element i products array (which is a faulty string element)
+      .then((data) => {
+        const filteredData = data.slice(0, -1);
+        setProducts(filteredData);
+      });
   }, []);
 
-  const foundProduct = React.useMemo(() => {
-    return products.find((product) => product.name === chosenProduct);
-  }, [products, chosenProduct]);
-
-  React.useEffect(() => {
-    if (foundProduct) {
-      setTotalCargoSize(foundProduct.size * quantity);
-    }
-  }, [quantity, foundProduct]);
-
-  const handleProductChange = React.useCallback((event) => {
-    setChosenProduct(event.target.value);
+  const handleCargoChange = React.useCallback((event) => {
+    setCargoData((prevCargoData) => ({
+      ...prevCargoData,
+      chosenCargo: event.target.value,
+    }));
   }, []);
 
   return (
     <div className={styles.content}>
       <Dropdown
-        key={`${id}-${chosenProduct}`}
-        value={chosenProduct}
-        onChange={handleProductChange}
+        key={`${id}-${cargoData.chosenCargo}`}
+        value={cargoData.chosenCargo || ""}
+        onChange={handleCargoChange}
       >
         <option value="" disabled hidden>
           Product
@@ -48,7 +58,7 @@ function ProductLine() {
         ))}
       </Dropdown>
       <QuantityInput quantity={quantity} setQuantity={setQuantity} />
-      {totalCargoSize}
+      {cargoData.totalCargoSize || 0}
     </div>
   );
 }
