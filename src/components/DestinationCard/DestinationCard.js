@@ -36,10 +36,10 @@ function DestinationCard() {
           ))}
         </DropDown>
       </div>
-      <p>
+      {/* <p>
         <strong>Selected planet: </strong>
         {chosenplanet}
-      </p>
+      </p> */}
     </>
   );
 }

@@ -10,6 +10,8 @@ function ProductLine() {
   const [quantity, setQuantity] = React.useState(0);
   const [totalCargoSize, setTotalCargoSize] = React.useState(0);
 
+  const id = React.useId();
+
   React.useEffect(() => {
     fetch("https://rf-candidate-sat-backend.azurewebsites.net/api/Products")
       .then((response) => response.json())
@@ -27,18 +29,17 @@ function ProductLine() {
     }
   }, [quantity, foundProduct]);
 
-  //   console.log("quantity: ", quantity); // number
-  //   console.log("totalSize: ", totalSize); // 0
-  //   console.log("Product: ", chosenProduct); // string
-  //   console.log("products: ", products); // [ {...},{...}]
-
   const handleProductChange = React.useCallback((event) => {
     setChosenProduct(event.target.value);
   }, []);
 
   return (
     <div className={styles.content}>
-      <Dropdown value={chosenProduct} onChange={handleProductChange}>
+      <Dropdown
+        key={`${id}-${chosenProduct}`}
+        value={chosenProduct}
+        onChange={handleProductChange}
+      >
         <option value="" disabled hidden>
           Product
         </option>

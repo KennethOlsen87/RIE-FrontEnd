@@ -1,10 +1,12 @@
 import React from "react";
 import ProductLine from "../ProductLine/ProductLine";
+import OrderCapacityTotal from "../OrderCapacityTotal/OrderCapacityTotal";
 
 import styles from "./OrderForm.module.css";
 
 function OrderForm() {
   const [productLines, setProductLines] = React.useState([<ProductLine />]);
+  const [totalCapacity, setTotalCapacity] = React.useState(0);
 
   function addProductLine() {
     const nextProductLines = [...productLines];
@@ -24,13 +26,14 @@ function OrderForm() {
         <div className={styles.productLines}>
           {productLines.map((productLine, index) => {
             return (
-              <div key={index} className={styles.productLine}>
-                {productLine}
+              <div className={styles.productLine} key={index}>
+                {/* {productLine} */}
+                <ProductLine />
               </div>
             );
           })}
         </div>
-        <p>Total capacity needed </p>
+        <OrderCapacityTotal />
       </div>
 
       <button onClick={addProductLine} className={styles.button}>
