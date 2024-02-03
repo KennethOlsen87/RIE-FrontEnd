@@ -6,7 +6,7 @@ import styles from "./OrderForm.module.css";
 
 function OrderForm() {
   const [productLines, setProductLines] = React.useState([<ProductLine />]);
-  const [totalCapacity, setTotalCapacity] = React.useState(0);
+  const [totalCapacity, setTotalCapacity] = React.useState([]);
 
   function addProductLine() {
     const nextProductLines = [...productLines];
@@ -27,12 +27,16 @@ function OrderForm() {
           {productLines.map((productLine, index) => {
             return (
               <div className={styles.productLine} key={index}>
-                <ProductLine />
+                <ProductLine
+                  totalCapacity={totalCapacity}
+                  setTotalCapacity={setTotalCapacity}
+                  productLines={productLines}
+                />
               </div>
             );
           })}
         </div>
-        {/* <OrderCapacityTotal capacityTotal={capacityTotal} /> */}
+        <p> Total capacity needed: {totalCapacity} </p>
       </div>
 
       <button onClick={addProductLine} className={styles.button}>
