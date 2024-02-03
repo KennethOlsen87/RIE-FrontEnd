@@ -1,6 +1,6 @@
 import React from "react";
 import ProductLine from "../ProductLine/ProductLine";
-import OrderCapacityTotal from "../OrderCapacityTotal/OrderCapacityTotal";
+// import OrderCapacityTotal from "../OrderCapacityTotal/OrderCapacityTotal";
 
 import styles from "./OrderForm.module.css";
 

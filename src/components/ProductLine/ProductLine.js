@@ -23,7 +23,14 @@ function ProductLine({ totalCapacity, setTotalCapacity, productLines }) {
   React.useEffect(() => {
     if (foundProduct) {
       const newTotalCargoSize = foundProduct.size * quantity || 0;
-      totalCargoSizeRef.current = newTotalCargoSize; // Update ref
+      totalCargoSizeRef.current += newTotalCargoSize; // Update ref
+
+      console.log("newTotalCargoSize", newTotalCargoSize);
+      console.log("totalCargoSizeRef.current", totalCargoSizeRef.current);
+      console.log("totalCargoSizeRef.current += newTotalCargoSize", totalCargoSizeRef.current += newTotalCargoSize);
+
+
+
       setTotalCargoSizeState(newTotalCargoSize); // Update state to reflect changes in total cargo size
       setCargoData(() => ({
         id: foundProduct.id,
@@ -73,17 +80,12 @@ function ProductLine({ totalCapacity, setTotalCapacity, productLines }) {
 
   React.useEffect(() => {
     if (foundProduct) {
-      // console.log(
-      //   "previousTotalCapacity.current: ",
-      //   previousTotalCapacity.current
-      // ); // object
-      // console.log("foundProduct.size: ", foundProduct.size);
-      // console.log("quantity: ", quantity);
-      // console.log("totalCargoSize", foundProduct.size * quantity); // 0
+      const test = parseFloat(previousTotalCapacity.current) || 0;
+      console.log("test", typeof test); // NaN
       productLines.map(() =>
         setTotalCapacity(
           previousTotalCapacity.current
-            ? previousTotalCapacity.current + foundProduct.size * quantity
+            ? test + foundProduct.size * quantity
             : foundProduct.size * quantity
         )
       );
@@ -109,6 +111,9 @@ function ProductLine({ totalCapacity, setTotalCapacity, productLines }) {
     [setCargoData]
   );
 
+
+  console.log("totalCapacity", totalCapacity);
+  console.log("typeof totalCapacity", typeof totalCapacity);
   return (
     <div className={styles.content}>
       <Dropdown
